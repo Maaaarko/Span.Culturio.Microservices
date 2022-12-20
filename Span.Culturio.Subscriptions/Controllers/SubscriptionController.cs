@@ -20,7 +20,6 @@ namespace Span.Culturio.Subscriptions.Controllers {
         public async Task<ActionResult<SubscriptionDto>> CreateAsync(CreateSubscriptionDto createSubscriptionDto) {
             var subscriptionDto = await _subscriptionService.CreateAsync(createSubscriptionDto);
             if (subscriptionDto is null) return BadRequest("Subscription could not be created");
-
             var packageDto = await _packageService.GetPackage(subscriptionDto.PackageId);
             if (packageDto is null) return BadRequest("Package could not be found");
             var packageItemsDto = packageDto.CultureObjects.ToList();
@@ -59,7 +58,7 @@ namespace Span.Culturio.Subscriptions.Controllers {
         public async Task<ActionResult<string>> Activate(ActivateDto activateDto) {
             var subscriptionDto = await _subscriptionService.GetById(activateDto.SubscriptionId);
             var package = await _packageService.GetPackage(subscriptionDto.PackageId);
-            var validDays = package.ValidDays;
+            int validDays = package.ValidDays;
             var result = await _subscriptionService.Activate(activateDto, validDays);
             switch (result) {
                 case "SubscriptionNotFound":

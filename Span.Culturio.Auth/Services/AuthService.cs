@@ -41,7 +41,7 @@ namespace Span.Culturio.Auth.Services {
 
             if (!AuthHelper.VerifyPasswordHash(loginUserDto.Password, user.PasswordHash, user.PasswordSalt)) return null;
 
-            var token = AuthHelper.CreateToken(loginUserDto, _config.GetSection("JWT_KEY").Value);
+            var token = AuthHelper.CreateToken(loginUserDto, _config.GetSection("Jwt:Key").Value);
 
             return new TokenDto { Token = token };
         }

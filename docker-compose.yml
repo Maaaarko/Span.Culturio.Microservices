@@ -81,7 +81,7 @@ services:
         environment:
             - "ASPNETCORE_ENVIRONMENT=Development"
             - "ASPNETCORE_URLS=http://+:80"
-            - "Endpoints__Packages=http://culturio-packages/api"
+            - "Endpoints__Packages=http://culturio-packages/api/"
             - "ConnectionStrings__DefaultConnection=Server=culturio-subscriptions-db;Database=Culturio.Subscriptions;User Id=sa;Password=MyPass@word;TrustServerCertificate=True;"
         ports:
             - "5004:80"
